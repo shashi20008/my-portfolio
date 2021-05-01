@@ -1,0 +1,4 @@
+.loading-container {
+  background-color: var(--background);
+  color: var(--bg-contrast);
+}

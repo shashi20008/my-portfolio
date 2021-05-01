@@ -1,0 +1,36 @@
+.greeting-container {
+  background-color: var(--background);
+  z-index: 2;
+}
+
+.greeting-container .content-container {
+  visibility: visible;
+  animation: fadeInFromHidden 3s ease-out;
+}
+
+@keyframes fadeInFromHidden {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  1% {
+    visibility: visible;
+    opacity: 0;
+  }
+
+  30% {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  70% {
+    visibility: visible;
+    opacity: 1
+  }
+
+  100% {
+    visibility: hidden;
+    opacity: 0;
+  }
+}

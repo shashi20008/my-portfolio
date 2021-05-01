@@ -1,0 +1,32 @@
+.social-row {
+  padding: 0.75rem;
+  background-color: var(--surface);
+  color: var(--surf-contrast);
+  margin-top: 1rem;
+}
+
+.social-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.social-button {
+  padding: 0.5rem;
+  background-color: var(--secondary);
+  border-radius: 15%;
+}
+
+.social-button + .social-button {
+  margin-left: 1rem;
+}
+
+.social-link {
+  display: flex;
+  background-color: var(--lowest);
+  border-radius: 50%;
+}
+
+.social-icon {
+  width: 25px;
+  height: 25px;
+}

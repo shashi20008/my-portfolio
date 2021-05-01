@@ -1,19 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
+import { ReactElement, useEffect, useState } from 'react';
+import { loadContent } from './common/content';
+import { LandingPage } from './components/LandingPage';
+import { Loading } from './components/Loading';
 import './App.css';
+import { Header } from './components/Header';
+import { Footer } from './components/Footer';
 
-function App() {
+function App(): ReactElement {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    (async () => {
+      await loadContent();
+      setLoading(false);
+    })().catch((e) => console.log(e.stack));
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <div className="App-Inner">{!loading ? <LandingPage /> : <Loading />}</div>
+      <Footer />
     </div>
   );
 }

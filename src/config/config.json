@@ -1,0 +1,30 @@
+{
+  "name": "John Doe",
+  "city": "New York",
+  "links": {
+    "facebook": "https://www.facebook.com/...",
+    "instagram": "https://www.instagram.com/...",
+    "linkedin": "https://www.linkedin.com/...",
+    "twitter": "https://www.twitter.com/..."
+  },
+  "highlights": [
+    {
+      "type": "GITHUB",
+      "title": "Foo",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "url": "https://github.com/Bar/Foo.git"
+    },
+    {
+      "type": "GITHUB",
+      "title": "Bar",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "url": "https://github.com/Foo/Bar.git"
+    },
+    {
+      "type": "GITHUB",
+      "title": "Foo Bar",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "url": "https://github.com/FooBar/FooBar.git"
+    }
+  ]
+}

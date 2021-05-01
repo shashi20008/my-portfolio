@@ -1,0 +1,23 @@
+.intro-row {
+  flex-direction: row-reverse;
+  padding: 0.75rem;
+  background-color: var(--surface);
+  color: var(--surf-contrast);
+}
+
+.intro-row .avatar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro-row .avatar-container img {
+  max-height: 15rem;
+  max-width: 15rem;
+  border-radius: 50%;
+}
+
+.intro-row .intro-line-1 {
+  display: block;
+  margin-bottom: 0.75rem;
+}
