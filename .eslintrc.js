@@ -17,6 +17,7 @@ module.exports = {
     },
   },
   ignorePatterns: [
-    "build/*"
+    "build/*",
+    "netlify/functions/*"
   ]
 };

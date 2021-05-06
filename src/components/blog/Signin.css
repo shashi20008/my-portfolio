@@ -1,0 +1,51 @@
+.signin-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.signin-container {
+  position: relative;
+  width: 375px;
+  margin: 0 auto;
+  padding: 25px;
+  background-color: var(--surface);
+}
+
+.signin-container form.pure-form input {
+  margin-bottom: 1rem;
+  box-shadow: none;
+  color: var(--surf-contrast);
+  /* background-color: #26323a; */
+  background-color: var(--surface);
+  border-color: var(--surf-contrast);
+  border-radius: 0;
+}
+
+.signin-container form.pure-form input::placeholder {
+  color: var(--surf-contrast);
+}
+
+.signin-container form.pure-form input:focus:invalid {
+  color: #ff1e1e;
+}
+
+.signin-container .error-message {
+  margin: 0;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background-color: rgb(255, 220, 220);
+  color: #ff1e1e;
+  border-radius: 5px;
+}
+
+.cover-spinner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(28, 36, 36, 0.5);
+}

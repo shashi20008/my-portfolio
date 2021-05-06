@@ -3,7 +3,7 @@ import { getContent } from '../common/content';
 
 import './Header.css';
 
-function Header(): ReactElement {
+function Header({ pageKey }: { pageKey: string }): ReactElement {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = useCallback(() => setMenuOpen((old) => !old), []);
@@ -13,7 +13,7 @@ function Header(): ReactElement {
       <div className="App-Inner header-centered">
         <div className="heading-left-side">
           <img className="header-logo" src="/logo.svg" />
-          <span>{getContent('header-title')}</span>
+          <span>{getContent(`header-title-${pageKey || 'home'}`)}</span>
         </div>
         <div className="header-right-side">
           <ul className={`header-menu ${menuOpen ? 'open' : ''}`}>

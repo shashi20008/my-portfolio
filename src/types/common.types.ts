@@ -35,6 +35,7 @@ interface ContentModel {
   name?: string;
   city?: string;
   highlights?: Highlights;
+  serverBaseUrl?: string;
 }
 
 export type { ProgressCB, L10NContent, SocialLinks, ContentModel, Highlight };
