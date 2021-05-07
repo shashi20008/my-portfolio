@@ -1,10 +1,19 @@
-import { ReactElement, useCallback, useState } from 'react';
+import { ReactElement, useCallback, useEffect, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { getContent } from '../common/content';
 
 import './Header.css';
 
-function Header({ pageKey }: { pageKey: string }): ReactElement {
-  const [menuOpen, setMenuOpen] = useState(false);
+function Header(): ReactElement {
+  const history = useHistory();
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const [pageKey, setPageKey] = useState<string>('');
+
+  useEffect(() => {
+    const listener = () => setPageKey((history.location.pathname || '').split('/').filter(Boolean).shift() || '');
+    listener();
+    return history.listen(listener);
+  }, []);
 
   const toggleMenu = useCallback(() => setMenuOpen((old) => !old), []);
 
@@ -18,13 +27,13 @@ function Header({ pageKey }: { pageKey: string }): ReactElement {
         <div className="header-right-side">
           <ul className={`header-menu ${menuOpen ? 'open' : ''}`}>
             <li>
-              <a href="/">{getContent('header-home')}</a>
+              <Link to="/">{getContent('header-home')}</Link>
             </li>
             <li>
-              <a href="/gallery">{getContent('header-gallery')}</a>
+              <Link to="/gallery">{getContent('header-gallery')}</Link>
             </li>
             <li>
-              <a href="/blog">{getContent('header-blog')}</a>
+              <Link to="/blog">{getContent('header-blog')}</Link>
             </li>
           </ul>
           <div className="nav-icon" onClick={toggleMenu}></div>

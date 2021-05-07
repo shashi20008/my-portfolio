@@ -13,4 +13,16 @@ interface TokenResponse {
   userEmail: string;
 }
 
-export type { APICallerProps, SigninProps, TokenResponse };
+interface BlogPost {
+  id: string;
+  title: string;
+  body: string;
+  font?: string;
+  user: string;
+  tags: Array<string>;
+  created_ts: number;
+}
+
+declare type BlogPosts = Array<BlogPost>;
+
+export type { BlogPost, BlogPosts, APICallerProps, SigninProps, TokenResponse };

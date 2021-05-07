@@ -2,7 +2,7 @@ import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { Route, Switch, useRouteMatch } from 'react-router';
 import { Signin } from './Signin';
 import { BlogCreate } from './BlogCreate';
-import { BlogPost } from './BlogPost';
+import { BlogPostPage } from './BlogPostPage';
 import { BlogPostsList } from './BlogPostsList';
 const mSecsInDay = 24 * 60 * 60 * 1000;
 
@@ -53,10 +53,10 @@ function Blog(): ReactElement {
         <BlogCreate token={token} logout={logout} />
       </Route>
       <Route path={`${match.path}/:postId`}>
-        <BlogPost token={token} logout={logout} />
+        <BlogPostPage />
       </Route>
       <Route path={match.path}>
-        <BlogPostsList token={token} logout={logout} />
+        <BlogPostsList />
       </Route>
     </Switch>
   );

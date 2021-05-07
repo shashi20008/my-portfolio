@@ -27,27 +27,27 @@ function App(): ReactElement {
 
   return (
     <div className="App">
-      <Header pageKey="home" />
-      <div className="App-Inner">
-        {loading ? (
-          <Loading />
-        ) : (
-          <Router>
+      <Router>
+        <Header />
+        <div className="App-Inner">
+          {loading ? (
+            <Loading />
+          ) : (
             <Switch>
               <Route path="/blog">
                 <Blog />
               </Route>
               <Route path="/gallery">
-                <div></div>
+                <div>This will host the gallery when complete</div>
               </Route>
               <Route path="/">
                 <LandingPage />
               </Route>
             </Switch>
-          </Router>
-        )}
-      </div>
-      <Footer />
+          )}
+        </div>
+        <Footer />
+      </Router>
     </div>
   );
 }

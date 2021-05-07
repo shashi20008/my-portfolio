@@ -1,0 +1,10 @@
+.posts-container {
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+}
+
+.links-container {
+  padding-left: 10px;
+  margin-top: 3rem;
+  border-left: solid gray 1px;
+}

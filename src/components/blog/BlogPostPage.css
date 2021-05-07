@@ -1,0 +1,25 @@
+.blog-post-page {
+  background-color: var(--surface);
+  color: var(--surf-contrast);
+  padding: 1rem;
+}
+
+.blog-post-title {
+  margin-top: 0;
+}
+
+.blog-post-hr {
+  width: 50%;
+  margin: 2rem 0 0;
+}
+
+.blog-post-credits {
+  font-size: 0.875rem;
+  margin-bottom: 0;
+}
+
+.blog-post-page span.blog-post-tag-label {
+  background: none;
+  padding-left: 0;
+  padding-right: 0;
+}

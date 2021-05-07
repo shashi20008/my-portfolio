@@ -11,10 +11,25 @@ async function fetchContent(): Promise<L10NContent> {
   return resp.json();
 }
 
+async function makeGetRequest<T>(url: string, token: string): Promise<T> {
+  const headers = {
+    authorization: `bearer ${token}` || '',
+  };
+
+  const resp = await fetch(url, { headers });
+  const respBody = await resp.json();
+
+  if (!resp.ok) {
+    throw new APIError(respBody, resp.status);
+  }
+
+  return respBody;
+}
+
 async function makePostRequest<T>(url: string, body: Record<string, unknown>, token?: string): Promise<T> {
   const headers = {
     'content-type': 'application/json',
-    authorization: token || '',
+    authorization: `bearer ${token}` || '',
   };
 
   const resp = await fetch(url, {
@@ -42,4 +57,4 @@ class APIError extends Error {
   }
 }
 
-export { makePostRequest, fetchContent, APIError };
+export { makeGetRequest, makePostRequest, fetchContent, APIError };

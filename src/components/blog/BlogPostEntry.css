@@ -1,0 +1,46 @@
+.blog-entry {
+  background-color: var(--surface);
+  padding: 1rem;
+}
+
+.blog-entry + .blog-entry {
+  margin-top: 1rem;
+}
+
+.blog-entry p, .blog-entry h4 {
+  margin: 0;
+}
+
+h4.blog-entry-title {
+  margin-bottom: 0.75rem;
+  font-weight: normal;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.blog-entry:hover h4.blog-entry-title {
+  text-decoration: underline;
+}
+
+p.blog-entry-body {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.blog-entry-tags {
+  display: flex;
+  margin-top: 1rem;
+  font-size: 0.875rem;
+}
+
+.blog-entry-tags span {
+  margin-right: 10px;
+  padding: 0.5rem 0.7rem;
+  background-color: #485965;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.blog-entry-tags span:hover {
+  text-decoration: underline;
+}
