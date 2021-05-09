@@ -1,0 +1,22 @@
+.create-post-page .create-post-form {
+  width: 75%;
+  min-width: 700px;
+  display: flex;
+  flex-direction: column;
+}
+
+.create-post-form input.blogpost-headline,
+.create-post-form input.blogpost-title,
+.create-post-form textarea.blogpost-textarea {
+  margin-bottom: 1rem;
+  background-color: var(--surface);
+  box-shadow: inset 0 1px 3px var(--background);
+  color: var(--surf-contrast);
+  font-family: monospace;
+}
+
+.blogpost-textarea {
+  width: 100%;
+  min-height: 50vh;
+  resize: vertical;
+}

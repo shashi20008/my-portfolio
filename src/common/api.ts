@@ -29,7 +29,7 @@ async function makeGetRequest<T>(url: string, token: string): Promise<T> {
 async function makePostRequest<T>(url: string, body: Record<string, unknown>, token?: string): Promise<T> {
   const headers = {
     'content-type': 'application/json',
-    authorization: `bearer ${token}` || '',
+    authorization: (token && `bearer ${token}`) || '',
   };
 
   const resp = await fetch(url, {

@@ -12,18 +12,41 @@ const handler = async (event) => {
     return response(401, null, 'UNAUTHORIZED', 'Please login before accessing this page.');
   }
 
-  const data = {
-    ...event.body,
-    user: event.userRef,
-    created_ts: Date.now()
-  };
-
-  const item = {
-    data,
-  };
+  const {
+    title = '',
+    headline = '',
+    markdown = '',
+    tags = []
+  } = event.body;
 
   try {
-    const resp = await client.query(query.Create(query.Collection('blog_posts'), item));
+    const text = await client.query(
+      query.Create(
+        query.Collection('blog_text'),
+        {
+          data: {
+            markdown
+          }
+        }
+      )
+    );
+
+    const data = {
+      title,
+      tags,
+      body: headline,
+      bodyRef: text.ref,
+      userRef: event.userRef,
+      created_ts: Date.now()
+    };
+
+    const resp = await client.query(
+      query.Create(
+        query.Collection('blog_posts'),
+        { data }
+      )
+    );
+
     return response(200, mapBlogPost(resp));
   }
   catch (error) {

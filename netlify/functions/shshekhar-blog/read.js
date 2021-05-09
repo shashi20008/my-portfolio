@@ -12,7 +12,17 @@ const handler = async (event) => {
   const { id } = event;
 
   try {
-    const resp = await client.query(query.Get(query.Ref(query.Collection('blog_posts'), id)))
+    const resp = await client.query(
+      query.Get(
+        query.Ref(query.Collection('blog_posts'), id)
+      )
+    );
+
+    if (resp.data.bodyRef) {
+      resp.data.body = (await client.query(query.Get(resp.data.bodyRef))).data.markdown;
+      resp.data.bodyRef = undefined;
+    }
+
     return response(200, mapBlogPost(resp));
   }
   catch (error) {

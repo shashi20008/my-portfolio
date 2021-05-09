@@ -29,17 +29,18 @@ async function handler(event) {
 
     const data = {
       token: uuidv4(),
-      user: user.ref,
+      userRef: user.ref,
+      userEmail: email,
       timestamp: Date.now()
     };
 
-    await client.query(query.Create(query.Collection('tokens'), {
-      ...data,
-      userId: user.ref.id,
-      userEmail: email
-    }));
+    await client.query(query.Create(query.Collection('tokens'), { data }));
 
-    return response(200, data);
+    return response(200, {
+      ...data,
+      userRef: undefined,
+      userId: data.userRef.id
+    });
   }
   catch (e) {
     console.log(e.stack || e);

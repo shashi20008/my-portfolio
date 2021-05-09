@@ -45,7 +45,7 @@ async function verifyToken(token) {
   }
 
   // A ref to the owner. Client can fetch it if required.
-  return result.data.user;
+  return result.data.userRef;
 }
 
 function response(statusCode, body, code, message) {
@@ -69,7 +69,8 @@ function mapBlogPost(resp) {
   return {
     id: resp.ref.id,
     ...resp.data,
-    user: resp.data.user.id
+    userRef: undefined,
+    userId: resp.data.userRef.id
   };
 }
 

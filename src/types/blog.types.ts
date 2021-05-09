@@ -18,7 +18,7 @@ interface BlogPost {
   title: string;
   body: string;
   font?: string;
-  user: string;
+  userId: string;
   tags: Array<string>;
   created_ts: number;
 }

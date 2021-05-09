@@ -1,8 +1,9 @@
-import { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router';
+import MarkDownIt from 'markdown-it';
 import { makeGetRequest } from '../../common/api';
 import { default as config } from '../../config/config.json';
-import { APICallerProps, BlogPost } from '../../types/blog.types';
+import { BlogPost } from '../../types/blog.types';
 import { LoadingSpinner } from '../lib/LoadingSpinner';
 
 import './BlogPostPage.css';
@@ -25,6 +26,13 @@ function BlogPostPage(): ReactElement {
     })();
   }, []);
 
+  const postBody = useMemo(() => {
+    if (!post || !post.body) {
+      return;
+    }
+    return MarkDownIt().render(post.body);
+  }, [post]);
+
   if (loading) {
     return (
       <div
@@ -40,8 +48,13 @@ function BlogPostPage(): ReactElement {
 
   return (
     <div className="blog-post-page">
-      <h2 className="blog-post-title">{post?.title}</h2>
-      <p className="blog-post-body">{post?.body}</p>
+      <h1 className="blog-post-title">{post?.title}</h1>
+      <div
+        className="blog-post-body"
+        dangerouslySetInnerHTML={{
+          __html: postBody || '',
+        }}
+      />
       <hr className="blog-post-hr" />
       <div className="blog-entry-tags">
         <span className="blog-post-tag-label">Tags:</span>
@@ -49,7 +62,7 @@ function BlogPostPage(): ReactElement {
           <span key={tag}>{tag}</span>
         ))}
       </div>
-      <p className="blog-post-credits">A post by - {post?.user}</p>
+      <p className="blog-post-credits">A post by - {post?.userId}</p>
     </div>
   );
 }
