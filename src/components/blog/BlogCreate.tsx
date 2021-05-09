@@ -1,4 +1,4 @@
-import { ReactElement, useCallback } from 'react';
+import { ReactElement, useCallback, useState } from 'react';
 import _get from 'lodash/get';
 import { Redirect, useHistory } from 'react-router';
 import { makePostRequest } from '../../common/api';
@@ -8,11 +8,16 @@ import { APICallerProps } from '../../types/blog.types';
 import './BlogCreate.css';
 import { markdown2Text } from '../../common/utils';
 import { getContent } from '../../common/content';
+import { FullPageCover } from '../lib/FullPageCover';
+import { LoadingSpinner } from '../lib/LoadingSpinner';
 
 function BlogCreate({ token }: APICallerProps): ReactElement {
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState('');
   const history = useHistory();
 
   const onSubmit = useCallback(async (e) => {
+    setError('');
     e.preventDefault();
     const { elements }: HTMLFormElement = e.target;
     const data = {
@@ -27,15 +32,16 @@ function BlogCreate({ token }: APICallerProps): ReactElement {
     }
 
     try {
+      setSaving(true);
       await makePostRequest(`${config.serverBaseUrl}/`, data, token || '');
       history.push('/blog');
     } catch (e) {
       if (e.statusCode === 401) {
         history.replace('signin', { from: 'create' });
       }
-      console.log(e);
-      console.log('Post creation failed.');
+      setError(e.errorCode || 'SERVER_ERROR');
     }
+    setSaving(false);
   }, []);
 
   if (token === null) {
@@ -51,6 +57,12 @@ function BlogCreate({ token }: APICallerProps): ReactElement {
 
   return (
     <div className="create-post-page">
+      {saving && (
+        <FullPageCover center={true} blurBackground={true}>
+          <LoadingSpinner />
+        </FullPageCover>
+      )}
+      {error && <p className="page-level-error">{getContent(`errors-${error}`)}</p>}
       <h2>{getContent('create-post-heading')}</h2>
       <form className="pure-form create-post-form" onSubmit={onSubmit}>
         <input
@@ -70,7 +82,7 @@ function BlogCreate({ token }: APICallerProps): ReactElement {
           name="headline"
           placeholder={getContent('create-post-headline-placeholder')}
         />
-        <button className="pure-button pure-button-primary" type="submit">
+        <button className="blogpost-submit pure-button pure-button-primary" type="submit">
           {getContent('create-post-save-button')}
         </button>
       </form>

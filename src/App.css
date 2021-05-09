@@ -7,3 +7,10 @@
   margin: 0 auto;
   padding: 1rem;
 }
+
+.page-level-error {
+  padding: 0.5rem;
+  background-color: rgb(255, 220, 220);
+  color: #ff1e1e;
+  border-radius: 5px;
+}

@@ -1,3 +1,8 @@
+.centered-loading-spinner {
+  display: flex;
+  justify-content: center;
+}
+
 /* Courtsey loading.io/css */
 .lds-default {
   display: inline-block;

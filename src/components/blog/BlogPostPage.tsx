@@ -5,15 +5,16 @@ import hljs from 'highlight.js';
 import { makeGetRequest } from '../../common/api';
 import { default as config } from '../../config/config.json';
 import { BlogPost } from '../../types/blog.types';
-import { LoadingSpinner } from '../lib/LoadingSpinner';
+import { CenteredLoadingSpinner } from '../lib/LoadingSpinner';
+import { getContent } from '../../common/content';
 
 import './BlogPostPage.css';
 import 'highlight.js/styles/a11y-dark.css';
-import { getContent } from '../../common/content';
 
 function BlogPostPage(): ReactElement {
   const { postId } = useParams<{ postId: string }>();
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const [post, setPost] = useState<BlogPost | null>(null);
 
   useEffect(() => {
@@ -22,8 +23,7 @@ function BlogPostPage(): ReactElement {
       try {
         setPost(await makeGetRequest<BlogPost>(`${config.serverBaseUrl}/${postId}`, ''));
       } catch (e) {
-        console.log(e);
-        // render error page somehow.
+        setError(e.errorCode || 'SERVER_ERROR');
       }
       setLoading(false);
     })();
@@ -46,35 +46,31 @@ function BlogPostPage(): ReactElement {
   }, [post]);
 
   if (loading) {
-    return (
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-        }}
-      >
-        <LoadingSpinner />
-      </div>
-    );
+    return <CenteredLoadingSpinner />;
   }
 
   return (
     <div className="blog-post-page">
-      <h1 className="blog-post-title">{post?.title}</h1>
-      <div
-        className="blog-post-body"
-        dangerouslySetInnerHTML={{
-          __html: postBody || '',
-        }}
-      />
-      <hr className="blog-post-hr" />
-      <div className="blog-entry-tags">
-        <span className="blog-post-tag-label">{getContent('post-tags-label')}</span>
-        {post?.tags.map((tag) => (
-          <span key={tag}>{tag}</span>
-        ))}
-      </div>
-      <p className="blog-post-credits">{getContent('post-author-label') + post?.userId}</p>
+      {error && <p className="page-level-error">{getContent(`errors-${error}`)}</p>}
+      {post && (
+        <>
+          <h1 className="blog-post-title">{post?.title}</h1>
+          <div
+            className="blog-post-body"
+            dangerouslySetInnerHTML={{
+              __html: postBody || '',
+            }}
+          />
+          <hr className="blog-post-hr" />
+          <div className="blog-entry-tags">
+            <span className="blog-post-tag-label">{getContent('post-tags-label')}</span>
+            {post?.tags.map((tag) => (
+              <span key={tag}>{tag}</span>
+            ))}
+          </div>
+          <p className="blog-post-credits">{getContent('post-author-label') + post?.userId}</p>
+        </>
+      )}
     </div>
   );
 }

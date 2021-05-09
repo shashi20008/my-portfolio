@@ -14,4 +14,12 @@ function LoadingSpinner(): ReactElement {
   );
 }
 
-export { LoadingSpinner };
+function CenteredLoadingSpinner(): ReactElement {
+  return (
+    <div className="centered-loading-spinner">
+      <LoadingSpinner />
+    </div>
+  );
+}
+
+export { LoadingSpinner, CenteredLoadingSpinner };

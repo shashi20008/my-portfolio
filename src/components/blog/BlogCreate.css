@@ -1,6 +1,9 @@
-.create-post-page .create-post-form {
+.create-post-page {
   width: 75%;
   min-width: 700px;
+}
+
+.create-post-page .create-post-form {
   display: flex;
   flex-direction: column;
 }
@@ -19,4 +22,8 @@
   width: 100%;
   min-height: 50vh;
   resize: vertical;
+}
+
+.blogpost-submit {
+  width: fit-content;
 }

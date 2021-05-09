@@ -37,5 +37,7 @@
   "post-tags-label": "Tags:",
   "post-author-label": "A post by - ",
   "__CX": "components/Footer",
-  "copyright-notice": "© 2021 Shashi Shekhar"
+  "copyright-notice": "© 2021 Shashi Shekhar",
+  "__CY": "errors",
+  "errors-SERVER_ERROR": "Something went wrong. Please try again later."
 }
