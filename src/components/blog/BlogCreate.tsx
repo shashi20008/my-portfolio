@@ -6,6 +6,7 @@ import { default as config } from '../../config/config.json';
 import { APICallerProps } from '../../types/blog.types';
 
 import './BlogCreate.css';
+import { markdown2Text } from '../../common/utils';
 
 function BlogCreate({ token }: APICallerProps): ReactElement {
   const history = useHistory();
@@ -19,6 +20,10 @@ function BlogCreate({ token }: APICallerProps): ReactElement {
       headline: _get(elements, 'headline.value'),
       tags: ['default'],
     };
+
+    if (!data.headline) {
+      data.headline = markdown2Text(data.markdown, 175);
+    }
 
     try {
       const result = await makePostRequest(`${config.serverBaseUrl}/`, data, token || '');

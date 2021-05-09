@@ -1,12 +1,14 @@
 import { ReactElement, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router';
 import MarkDownIt from 'markdown-it';
+import hljs from 'highlight.js';
 import { makeGetRequest } from '../../common/api';
 import { default as config } from '../../config/config.json';
 import { BlogPost } from '../../types/blog.types';
 import { LoadingSpinner } from '../lib/LoadingSpinner';
 
 import './BlogPostPage.css';
+import 'highlight.js/styles/a11y-dark.css';
 
 function BlogPostPage(): ReactElement {
   const { postId } = useParams<{ postId: string }>();
@@ -30,7 +32,20 @@ function BlogPostPage(): ReactElement {
     if (!post || !post.body) {
       return;
     }
-    return MarkDownIt().render(post.body);
+    return MarkDownIt({
+      highlight: (str, lang) => {
+        if (lang && hljs.getLanguage(lang)) {
+          try {
+            return hljs.highlight(str, { language: lang }).value;
+          } catch (_) {
+            console.log(_);
+          }
+        } else {
+          console.log('language', lang, 'not supported');
+        }
+        return '';
+      },
+    }).render(post.body);
   }, [post]);
 
   if (loading) {
