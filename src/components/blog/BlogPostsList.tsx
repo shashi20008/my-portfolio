@@ -5,6 +5,7 @@ import { default as config } from '../../config/config.json';
 import { BlogPosts } from '../../types/blog.types';
 
 import './BlogPostsList.css';
+import { getContent } from '../../common/content';
 
 function BlogPostsList(): ReactElement {
   const [posts, setPosts] = useState<BlogPosts>([]);
@@ -19,10 +20,7 @@ function BlogPostsList(): ReactElement {
   return (
     <div className="pure-g">
       <div className="posts-container pure-u-1-1 pure-u-md-3-4">
-        <p>
-          Welcome to my blog. Here you&apos;ll find my two cents on tech, projects, and life, recorded as I navigate
-          through it.
-        </p>
+        <p>{getContent('posts-list-intro')}</p>
         {posts.map((post) => (
           <BlogPostEntry key={post.id} {...post} />
         ))}

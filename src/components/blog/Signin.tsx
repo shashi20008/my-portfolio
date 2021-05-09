@@ -7,6 +7,7 @@ import './Signin.css';
 import { makePostRequest } from '../../common/api';
 import { LoadingSpinner } from '../lib/LoadingSpinner';
 import { useHistory } from 'react-router-dom';
+import { getContent } from '../../common/content';
 
 function Signin({ onSuccess, token }: SigninProps): ReactElement {
   const history = useHistory();
@@ -54,10 +55,16 @@ function Signin({ onSuccess, token }: SigninProps): ReactElement {
         </div>
       )}
       <form className="pure-form" onSubmit={onSubmit}>
-        <input type="email" name="email" placeholder="Email address" required spellCheck="false" />
-        <input type="password" name="password" placeholder="Password" required />
+        <input
+          type="email"
+          name="email"
+          placeholder={getContent('signin-email-placeholder')}
+          required
+          spellCheck="false"
+        />
+        <input type="password" name="password" placeholder={getContent('signin-password-placeholder')} required />
         <button className="pure-button pure-button-primary" type="submit">
-          Signin
+          {getContent('signin-submit')}
         </button>
       </form>
     </div>

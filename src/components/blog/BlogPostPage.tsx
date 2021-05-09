@@ -9,6 +9,7 @@ import { LoadingSpinner } from '../lib/LoadingSpinner';
 
 import './BlogPostPage.css';
 import 'highlight.js/styles/a11y-dark.css';
+import { getContent } from '../../common/content';
 
 function BlogPostPage(): ReactElement {
   const { postId } = useParams<{ postId: string }>();
@@ -37,11 +38,7 @@ function BlogPostPage(): ReactElement {
         if (lang && hljs.getLanguage(lang)) {
           try {
             return hljs.highlight(str, { language: lang }).value;
-          } catch (_) {
-            console.log(_);
-          }
-        } else {
-          console.log('language', lang, 'not supported');
+          } catch (_) {}
         }
         return '';
       },
@@ -53,7 +50,7 @@ function BlogPostPage(): ReactElement {
       <div
         style={{
           display: 'flex',
-          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
         <LoadingSpinner />
@@ -72,12 +69,12 @@ function BlogPostPage(): ReactElement {
       />
       <hr className="blog-post-hr" />
       <div className="blog-entry-tags">
-        <span className="blog-post-tag-label">Tags:</span>
+        <span className="blog-post-tag-label">{getContent('post-tags-label')}</span>
         {post?.tags.map((tag) => (
           <span key={tag}>{tag}</span>
         ))}
       </div>
-      <p className="blog-post-credits">A post by - {post?.userId}</p>
+      <p className="blog-post-credits">{getContent('post-author-label') + post?.userId}</p>
     </div>
   );
 }

@@ -7,6 +7,7 @@ import { APICallerProps } from '../../types/blog.types';
 
 import './BlogCreate.css';
 import { markdown2Text } from '../../common/utils';
+import { getContent } from '../../common/content';
 
 function BlogCreate({ token }: APICallerProps): ReactElement {
   const history = useHistory();
@@ -50,23 +51,27 @@ function BlogCreate({ token }: APICallerProps): ReactElement {
 
   return (
     <div className="create-post-page">
-      <h2>Curate a new post</h2>
+      <h2>{getContent('create-post-heading')}</h2>
       <form className="pure-form create-post-form" onSubmit={onSubmit}>
-        <input className="blogpost-title" type="text" name="title" placeholder="Title of the post" />
-
+        <input
+          className="blogpost-title"
+          type="text"
+          name="title"
+          placeholder={getContent('create-post-title-placeholder')}
+        />
         <textarea
           className="blogpost-textarea"
-          placeholder="Write your post here, you may use markdown."
+          placeholder={getContent('create-post-editor-placeholder')}
           name="markdown"
         ></textarea>
         <input
           type="text"
           className="blogpost-headline"
           name="headline"
-          placeholder="Create a one line decription (optional)"
+          placeholder={getContent('create-post-headline-placeholder')}
         />
         <button className="pure-button pure-button-primary" type="submit">
-          Save and publish
+          {getContent('create-post-save-button')}
         </button>
       </form>
     </div>
