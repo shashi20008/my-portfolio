@@ -8,13 +8,6 @@ import './App.css';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 
-const PAGE_TO_COMPONENT: {
-  [key: string]: (arg: any) => ReactElement;
-} = {
-  home: LandingPage,
-  blog: Blog,
-};
-
 function App(): ReactElement {
   const [loading, setLoading] = useState(true);
 

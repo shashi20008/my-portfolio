@@ -19,12 +19,9 @@ const SPACE_OR_NEW_LINE = /(\s|\n|\r\n)+/g;
 
 function markdown2Text(markdown: string, limit?: number): string {
   const html = MarkDownIt().render(markdown);
-  console.log(html);
   const span = document.createElement('span');
   span.innerHTML = html;
   const text = span.innerText;
-
-  console.log(text);
 
   if (!limit) {
     return text.replace(SPACE_OR_NEW_LINE, ' ');
@@ -32,13 +29,5 @@ function markdown2Text(markdown: string, limit?: number): string {
 
   return text.substring(0, limit).replace(SPACE_OR_NEW_LINE, ' ');
 }
-
-declare global {
-  interface Window {
-    markdown2Text: any;
-  }
-}
-
-window.markdown2Text = markdown2Text;
 
 export { markdown2Text, markVisit, hasRecentlyVisited };

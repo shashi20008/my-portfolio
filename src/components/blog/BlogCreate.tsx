@@ -26,7 +26,7 @@ function BlogCreate({ token }: APICallerProps): ReactElement {
     }
 
     try {
-      const result = await makePostRequest(`${config.serverBaseUrl}/`, data, token || '');
+      await makePostRequest(`${config.serverBaseUrl}/`, data, token || '');
       history.push('/blog');
     } catch (e) {
       if (e.statusCode === 401) {
