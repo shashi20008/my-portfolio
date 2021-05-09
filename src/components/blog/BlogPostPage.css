@@ -33,3 +33,9 @@
 .blog-post-body img {
   max-width: 100%;
 }
+
+.blog-post-body code[class*=language-] {
+  background: var(--background);
+  display: block;
+  padding: 0.5rem;
+}
